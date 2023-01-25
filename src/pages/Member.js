@@ -34,7 +34,12 @@ const Member = () => {
     setLoading(false);
   };
   useEffect(() => {
-    getData();
+    let unsub = auth.onAuthStateChanged((user) => {
+      if (user !== null) getData();
+    });
+    return () => {
+      unsub();
+    };
   }, []);
   return (
     <div>

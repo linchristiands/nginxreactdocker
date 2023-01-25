@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Header from "../components/Header";
-import {
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 const Login = () => {
@@ -29,8 +27,8 @@ const Login = () => {
           setError("パスワードが間違ってます。");
         } else {
           setError("エラーが発生しました。");
-          console.log(error);
         }
+        console.error(error);
       }
     }
   };
