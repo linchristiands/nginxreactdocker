@@ -3,8 +3,39 @@ import { useNavigate, Navigate } from "react-router-dom";
 import Header from "../components/Header";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
-
 const Login = () => {
+  const loggerApi = async (message) => {
+    try {
+      let logdata = {
+        serviceContext: {
+          resourceType: "cloudrun service",
+          service: "nginxreact",
+          version: "1",
+        },
+        message: message,
+        context: {
+          reportLocation: {
+            functionName: "login",
+          },
+        },
+      };
+      await fetch(
+        "https://clouderrorreporting.googleapis.com/v1beta1/projects/" +
+          process.env.PROJECT_ID +
+          "/events:report?key=" +
+          process.env.API_KEY,
+        {
+          method: "post",
+          body: JSON.stringify(logdata),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      //console.log(error);
+    }
+  };
   const navigate = useNavigate();
   const user = window.localStorage.getItem("user");
   const [email, setEmail] = useState("");
@@ -28,7 +59,7 @@ const Login = () => {
         } else {
           setError("エラーが発生しました。");
         }
-        console.error(error);
+        loggerApi(error.code);
       }
     }
   };
