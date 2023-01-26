@@ -79,7 +79,7 @@ const Login = () => {
       <div>
         <Header />
         <div className="flexCenter">
-          <h2>ログイン</h2>
+          <h2>ログインtestetstestests</h2>
           <div>
             <div className="form-group mt-3">
               <label>メール</label>
