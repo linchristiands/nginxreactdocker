@@ -22,9 +22,9 @@ const Login = () => {
       };
       await fetch(
         "https://clouderrorreporting.googleapis.com/v1beta1/projects/" +
-          process.env.PROJECT_ID +
+          process.env.REACT_APP_PROJECT_ID +
           "/events:report?key=" +
-          process.env.API_KEY,
+          process.env.REACT_APP_API_KEY,
         {
           method: "post",
           body: JSON.stringify(logdata),
@@ -79,7 +79,7 @@ const Login = () => {
       <div>
         <Header />
         <div className="flexCenter">
-          <h2>ログインtestetstestests</h2>
+          <h2>ログイン</h2>
           <div>
             <div className="form-group mt-3">
               <label>メール</label>
