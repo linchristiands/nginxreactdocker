@@ -3,6 +3,8 @@ import { useNavigate, Navigate } from "react-router-dom";
 import Header from "../components/Header";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+import { api_key } from "../firebase/firebase";
+
 const Login = () => {
   const loggerApi = async (message) => {
     console.log("logger");
@@ -21,10 +23,8 @@ const Login = () => {
         },
       };
       await fetch(
-        "https://clouderrorreporting.googleapis.com/v1beta1/projects/" +
-          process.env.REACT_APP_PROJECT_ID +
-          "/events:report?key=" +
-          process.env.REACT_APP_API_KEY,
+        "https://clouderrorreporting.googleapis.com/v1beta1/projects/kubernetestest-373803/events:report?key=" +
+          api_key,
         {
           method: "post",
           body: JSON.stringify(logdata),
