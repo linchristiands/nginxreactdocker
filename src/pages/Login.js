@@ -7,7 +7,6 @@ import { api_key } from "../firebase/firebase";
 
 const Login = () => {
   const loggerApi = async (message) => {
-    console.log("logger");
     try {
       let logdata = {
         serviceContext: {
@@ -33,7 +32,6 @@ const Login = () => {
           },
         }
       );
-      console.log("logger done");
     } catch (error) {
       //console.log(error);
     }
